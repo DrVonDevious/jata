@@ -1,8 +1,21 @@
 {
-  "name": "jata",
+  "name": "jata-cli",
   "version": "0.0.1",
-  "description": "A simple CLI job application tracker",
+  "description": "A CLI job application tracker",
   "main": "index.js",
+  "homepage": "https://github.com/DrVonDevious/jata",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DrVonDevious/jata.git"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "employment",
+    "jobs"
+  ],
+  "preferGlobal": true,
   "bin": {
     "jata": "bin/jata"
   },
