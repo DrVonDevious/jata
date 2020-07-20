@@ -1,4 +1,5 @@
 const term = require('terminal-kit').terminal
+const fs = require('fs')
 
 module.exports = () => {
 
@@ -16,6 +17,17 @@ module.exports = () => {
     clear()
     mainMenu()
 
+  }
+
+  const saveJob = (job_data) => {
+    fs.readFile('data/jobs.json', (error, data) => {
+      let obj = JSON.parse(data)
+      obj.jobs.push(job_data)
+      let json = JSON.stringify(obj)
+      fs.writeFile("data/jobs.json", json, (error) => {
+        if (error) throw error
+      });
+    })
   }
 
   const newApp = async () => {
@@ -39,12 +51,31 @@ module.exports = () => {
     app.company = company
     app.jobTitle = job_title
 
+    saveJob(app)
+
     mainMenu()
   }
 
   const viewApps = async () => {
+
     clear()
-    mainMenu()
+
+    fs.readFile("data/jobs.json", (error, data) => {
+      if (error) throw error
+      let obj = JSON.parse(data)
+
+      let jobMenuItems = obj.jobs.map(job => {
+        return `Role: ${job.jobTitle}, Company: ${job.company}, Status: ${job.status}`
+      })
+
+      term.singleColumnMenu([...jobMenuItems, "Back"], (error, response) => {
+        if (response.selectedText == "Back") {
+          clear()
+          mainMenu()
+        }
+      })
+    })
+
   }
 
   const editApp = async () => {
