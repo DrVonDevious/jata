@@ -8,7 +8,7 @@ module.exports = () => {
   }
 
   const title = () => {
-    term.bold.underline.red("Job Tracker\n")
+    term.bold.underline.red("JATA\n")
   }
 
   const run = () => {
@@ -16,6 +16,30 @@ module.exports = () => {
     clear()
     mainMenu()
 
+  }
+
+  const newApp = async () => {
+
+    let app = {
+      jobTitle: "none",
+      company: "none",
+      status: "pending",
+    }
+
+    clear()
+
+    term.green("Enter job title: ")
+    let job_title = await term.inputField({}).promise
+    clear()
+
+    term.green("Enter company name: ")
+    let company = await term.inputField({}).promise
+    clear()
+
+    app.company = company
+    app.jobTitle = job_title
+
+    mainMenu()
   }
 
   const mainMenu = () => {
@@ -31,13 +55,18 @@ module.exports = () => {
     ]
 
     term.singleColumnMenu(mainMenuItems, (error, response) => {
-
-      if (response.selectedIndex == 4) {
-        exit()
+      switch (response.selectedIndex) {
+        case 0:
+          newApp()
+          break
+        case 4:
+          exit()
+          break
+        default:
+          clear()
+          mainMenu()
+          break
       }
-
-      clear()
-      mainMenu()
     })
   }
 
