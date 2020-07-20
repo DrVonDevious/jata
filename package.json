@@ -1,0 +1,17 @@
+{
+  "name": "jata",
+  "version": "0.0.1",
+  "description": "A simple CLI job application tracker",
+  "main": "index.js",
+  "bin": {
+    "jata": "bin/jata"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "DrVonDevious",
+  "license": "ISC",
+  "dependencies": {
+    "terminal-kit": "^1.37.0"
+  }
+}
