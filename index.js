@@ -42,6 +42,21 @@ module.exports = () => {
     mainMenu()
   }
 
+  const viewApps = async () => {
+    clear()
+    mainMenu()
+  }
+
+  const editApp = async () => {
+    clear()
+    mainMenu()
+  }
+
+  const deleteApp = async () => {
+    clear()
+    mainMenu()
+  }
+
   const mainMenu = () => {
 
     title()
@@ -58,6 +73,15 @@ module.exports = () => {
       switch (response.selectedIndex) {
         case 0:
           newApp()
+          break
+        case 1:
+          viewApps()
+          break
+        case 2:
+          editApp()
+          break
+        case 3:
+          deleteApp()
           break
         case 4:
           exit()
@@ -77,5 +101,6 @@ module.exports = () => {
   }
 
   run()
+
 }
 
